@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Black+Han+Sans&family=Noto+Sans:wght@300;400;500;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0A0A0A;
+  --color-paper: #F5F0E8;
+  --color-blood: #CC0000;
+  --color-mid-gray: #2A2A2A;
+  --color-text-ink: #0A0A0A;
+  --color-text-muted: #5A5A5A;
+
+  --font-display: 'Bangers', cursive;
+  --font-chapter: 'Black Han Sans', sans-serif;
+  --font-body: 'Noto Sans', sans-serif;
+  --font-mono: 'Courier Prime', monospace;
+
+  --shadow-sm: 4px 4px 0 var(--color-ink);
+  --shadow-md: 6px 6px 0 var(--color-ink);
+  --shadow-lg: 10px 10px 0 var(--color-ink);
+  --shadow-red: 6px 6px 0 var(--color-blood);
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-text-ink font-body antialiased selection:bg-blood selection:text-paper;
+    /* Subtle paper grain texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-wide uppercase;
+  }
+
+  /* No border radius anywhere */
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@layer utilities {
+  .halftone-light {
+    background-image: radial-gradient(circle, var(--color-ink) 1px, transparent 1px);
+    background-size: 6px 6px;
+    opacity: 0.15;
+  }
+  .halftone-medium {
+    background-image: radial-gradient(circle, var(--color-ink) 1.5px, transparent 1.5px);
+    background-size: 4px 4px;
+    opacity: 0.30;
+  }
+  .halftone-heavy {
+    background-image: radial-gradient(circle, var(--color-paper) 1.5px, transparent 1.5px);
+    background-size: 3px 3px;
+    opacity: 0.60;
+  }
+  .halftone-heavy-black {
+    background-image: radial-gradient(circle, var(--color-ink) 1.5px, transparent 1.5px);
+    background-size: 3px 3px;
+    opacity: 0.60;
+  }
+
+  .panel-border {
+    @apply border-[3px] border-ink;
+  }
+  .panel-border-heavy {
+    @apply border-[5px] border-ink;
+  }
+  .panel-border-red {
+    @apply border-[3px] border-blood;
+  }
+
+  .shadow-hard {
+    box-shadow: var(--shadow-sm);
+  }
+  .shadow-hard-md {
+    box-shadow: var(--shadow-md);
+  }
+  .shadow-hard-lg {
+    box-shadow: var(--shadow-lg);
+  }
+  .shadow-hard-red {
+    box-shadow: var(--shadow-red);
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-200;
+  }
+  .hover-lift:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--color-ink);
+  }
+  .hover-lift:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--color-ink);
+  }
+
+  .hover-lift-red {
+    @apply transition-transform duration-200;
+  }
+  .hover-lift-red:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--color-blood);
+  }
+  .hover-lift-red:active {
+    transform: translate(3px, 3px);
+    box-shadow: none;
+  }
+
+  .text-stroke-ink {
+    -webkit-text-stroke: 2px var(--color-ink);
+    color: transparent;
+  }
+  .text-stroke-paper {
+    -webkit-text-stroke: 2px var(--color-paper);
+    color: transparent;
+  }
+
+  .speed-lines-bg {
+    background: repeating-conic-gradient(
+      from 0deg,
+      transparent 0deg 10deg,
+      rgba(10, 10, 10, 0.1) 10deg 11deg,
+      transparent 11deg 20deg,
+      rgba(10, 10, 10, 0.2) 20deg 22deg
+    );
+  }
+  .speed-lines-bg-white {
+    background: repeating-conic-gradient(
+      from 0deg,
+      transparent 0deg 10deg,
+      rgba(245, 240, 232, 0.1) 10deg 11deg,
+      transparent 11deg 20deg,
+      rgba(245, 240, 232, 0.2) 20deg 22deg
+    );
+  }
+
+  .manga-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .manga-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: var(--color-blood);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.6s ease-out;
+  }
+  .manga-underline.is-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+  border-left: 3px solid var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blood);
+}
+
