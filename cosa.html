@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Contenedor principal del loader */
+.pikachu-loader {
+  position: relative;
+  width: 120px;
+  height: 90px;
+  margin: 0;
+  transform: scale(0.6); /* Ajusta este valor para hacerlo más grande o pequeño */
+  transform-origin: left center;
+}
+
+/* El cuerpo y la cara de Pikachu */
+.pikachu-sprite {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #FFCB05;
+  background-image: 
+    radial-gradient(circle at 8px 12px, #000 2px, transparent 2px), 
+    radial-gradient(circle at 22px 12px, #000 2px, transparent 2px), 
+    radial-gradient(circle at 15px 18px, #e32636 2px, transparent 2px);
+  animation: pika-bounce 0.5s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+/* Las orejas de Pikachu */
+.pikachu-sprite::before, .pikachu-sprite::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 10px;
+  height: 16px;
+  background: #FFCB05;
+  border-radius: 50% 50% 0 0;
+  z-index: -1;
+}
+
+.pikachu-sprite::before {
+  left: 0px;
+  transform: rotate(-30deg);
+  box-shadow: inset 0 5px 0 #27272a;
+}
+
+.pikachu-sprite::after {
+  right: 0px;
+  transform: rotate(30deg);
+  box-shadow: inset 0 5px 0 #27272a;
+}
+
+/* Las cartas de Pokémon */
+.card-step {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 44px;
+  background: #1e40af; /* Azul de la carta */
+  border: 2px solid #fbbf24; /* Borde amarillo */
+  border-radius: 4px;
+  animation: card-cascade 1s linear infinite;
+  z-index: 5;
+  box-shadow: -2px 2px 4px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* La mitad roja y blanca de la Pokéball */
+.card-step::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ef4444 50%, #ffffff 50%);
+  border: 1px solid #1e293b;
+}
+
+/* El botón central de la Pokéball */
+.card-step::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #1e293b;
+}
+
+/* Animación de salto de Pikachu */
+@keyframes pika-bounce {
+  0% { transform: scale(1, 0.7); }
+  40% { transform: scale(0.8, 1.2); }
+  60% { transform: scale(1, 1); }
+  100% { bottom: 120px; }
+}
+
+/* Animación de las cartas moviéndose */
+@keyframes card-cascade {
+  0% {
+    transform: translate(35px, -30px);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translate(-70px, 90px);
+    opacity: 0;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="pikachu-loader">
+  <div class="pikachu-sprite"></div>
+  <div class="card-step" style="animation-delay: 0s;"></div>
+  <div class="card-step" style="animation-delay: -0.333s;"></div>
+  <div class="card-step" style="animation-delay: -0.666s;"></div>
+</div>
+</body>
+</html>
