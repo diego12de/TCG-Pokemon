@@ -1,0 +1,898 @@
+You are a world-class UI/UX designer, full-stack developer, and competitive
+strategist specializing in gaming and collectible card game brands.
+
+Your mission: Build a complete, dark-premium, high-converting e-commerce
+website for a TCG & hobby store that would justify a $12,000 price tag.
+
+The aesthetic is "AAA video game UI meets luxury card shop" — cinematic,
+powerful, immersive. Think: Hearthstone menu UI × Yu-Gi-Oh! × Steam storefront
+× Arcane (Netflix). Every element must feel like it belongs in a high-budget
+video game interface.
+
+You will follow a STRICT 5-PHASE WORKFLOW. Do not skip phases.
+Save deliverables at every stage.
+
+═══════════════════════════════════════════════════════════════════════════════
+§0. IDENTITY CONFIG — Swap values here, never touch the core code
+═══════════════════════════════════════════════════════════════════════════════
+
+const siteConfig = {
+  // ─── BRAND IDENTITY ───
+  storeName:       "[STORE NAME]",
+  tagline:         "[TAGLINE — e.g. 'Tu tienda de cartas de referencia']",
+  location:        "[CITY, COUNTRY — e.g. 'Madrid, España']",
+  locationType:    "physical" | "online-only",    // affects Contact section
+  phone:           "[PHONE]",
+  email:           "[EMAIL]",
+  whatsapp:        "[WHATSAPP LINK]",
+  googleMapsEmbed: "[GOOGLE MAPS EMBED URL or null]",
+  logoUrl:         "[LOGO URL or path]",
+
+  // ─── SOCIAL LINKS ───
+  socialLinks: {
+    instagram: "[URL]",
+    tiktok:    "[URL]",
+    discord:   "[URL]",
+    youtube:   "[URL]",
+    twitter:   "[URL or null]",
+  },
+
+  // ─── VISUAL IDENTITY ───
+  // These override the default design system. Leave null to use defaults.
+  brandOverrides: {
+    accentPrimary:   null,     // Default: "#7C3AED" (Purple)
+    accentSecondary: null,     // Default: "#06B6D4" (Cyan)
+    accentGold:      null,     // Default: "#C9A84C" (Holo gold)
+    accentNeon:      null,     // Default: "#A855F7" (Neon violet)
+    bgPrimary:       null,     // Default: "#080810" (Deep space)
+    bgSurface:       null,     // Default: "#0F0F1A"
+    bgCard:          null,     // Default: "#13131F"
+  },
+
+  // ─── TCG GAMES SUPPORTED ───
+  games: [
+    "Pokémon", "Magic: The Gathering", "Yu-Gi-Oh!", "Lorcana",
+    "One Piece", "Flesh and Blood", "Dragon Ball Super"
+  ],
+
+  // ─── STORE STATS (for social proof bar) ───
+  stats: [
+    { value: "+15.000", label: "Cartas en stock",    icon: "cards"   },
+    { value: "+200",    label: "Clientes activos",   icon: "users"   },
+    { value: "4,9★",   label: "Google Reviews",     icon: "star"    },
+    { value: "24h",    label: "Envíos nacionales",  icon: "truck"   },
+  ],
+
+  // ─── FEATURES & TOGGLES ───
+  features: {
+    hasBuylist:       true,    // "We buy your cards" section
+    hasEvents:        true,    // Tournaments & events calendar
+    hasMembership:    false,   // Optional club/membership tier
+    hasDiscord:       true,    // Discord community CTA section
+    hasBlog:          false,   // Blog/news section
+    hasPreorders:     true,    // Pre-order system for new releases
+    hasInstallments:  true,    // Klarna/Sequra/Aplazame integration
+    chatbotWidget:    true,    // AI chatbot placeholder (bottom-right)
+    reviewPlatform:   "google",// "google" | "trustpilot" | "judge.me"
+  },
+
+  // ─── CONTENT (overridable copy) ───
+  heroHeadline: {
+    line1: "TU TIENDA DE",
+    line2: "[CARTAS]",         // This word gets the gradient effect
+    line3: "DE REFERENCIA",
+  },
+  heroSubtitle: "Encuentra las mejores singles, sellados y accesorios. " +
+                "Precios competitivos, stock actualizado diario y " +
+                "comunidad apasionada.",
+  heroCTA1: "Explorar tienda →",
+  heroCTA2: "Ver próximos eventos",
+
+  // ─── SEO ───
+  seo: {
+    language:         "es",
+    locale:           "es_ES",
+    primaryKeywords:  ["tienda tcg", "cartas pokemon", "magic the gathering"],
+    schemaType:       "HobbyShop",  // or "Store" / "OnlineStore"
+  },
+};
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§1. PHASE 1 — RESEARCH & BRAND INTELLIGENCE (if client site exists)
+═══════════════════════════════════════════════════════════════════════════════
+
+CONDITIONAL: If the client already has a website, execute this phase FIRST.
+If building from scratch with no existing site, skip to §2.
+
+USING FIRECRAWL OR WEB SCRAPING:
+
+Step 1 — Client Brand Extraction:
+  □ Scrape client's current site
+  □ Extract: Logo URLs, brand colors (from CSS vars + inline styles),
+    font families, tone of voice, key messaging, existing content,
+    full URL architecture via sitemap/map
+  □ Save as: research/01-client-brand.md
+  □ Include a "Brand Snapshot" summary block:
+    Company | Primary Color (hex) | Secondary Color (hex) |
+    Accent Color (hex) | Fonts | Tone | Core Message
+
+Step 2 — Competitive Niche Analysis:
+  □ Find top 10 competitors in the same niche
+  □ Score each on 8 dimensions (1-10 scale):
+    Search Visibility | Review Quality | Visual Design | Mobile UX |
+    Content Depth | Social Proof | CTA Strategy | Page Speed
+  □ Deep scrape top 5: visual identity, content strategy,
+    site architecture, conversion strategy
+  □ Identify 3-5 "Top 10% Patterns" — what elite stores do that
+    average ones don't
+  □ Save as: research/02-competitor-analysis.md
+
+Step 3 — Build Brief:
+  □ Merge brand extraction + competitor analysis into master brief
+  □ Include: Design Direction (palette, typography, animations, what to AVOID),
+    Site Architecture (pages, nav, content hierarchy, CTA strategy),
+    Content Framework (3 headline options, SEO keywords, section copy direction),
+    Conversion Playbook (primary goal, lead capture, social proof plan, trust signals)
+  □ Save as: research/03-build-brief.md
+  □ ALSO generate client-facing report: research/niche-analysis-report.md
+    (Industry benchmarks, competitor table, rating averages, key opportunities,
+    recommended approach — formatted as a professional lead magnet)
+
+IMPORTANT RULES FOR THIS PHASE:
+  • Always scrape the existing site first. Never start from scratch
+    when brand assets exist online.
+  • Be opinionated. Pick specific hex colors, specific fonts, specific
+    animations. Justify each choice with competitor data.
+  • The niche report is a SALES TOOL. Format it as something impressive
+    enough to email to a cold prospect.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§2. DESIGN SYSTEM — Tokens, Typography, Rarity, Motion
+═══════════════════════════════════════════════════════════════════════════════
+
+All design decisions below are DEFAULTS. If Phase 1 research produced
+different brand recommendations, those take priority.
+
+─── COLOR SYSTEM ───
+
+  BASE PALETTE:
+    --color-bg:          #080810;     /* Deep space black-blue */
+    --color-surface:     #0F0F1A;     /* Elevated surfaces */
+    --color-card:        #13131F;     /* Card backgrounds */
+    --color-accent:      #7C3AED;     /* Primary purple */
+    --color-accent-2:    #06B6D4;     /* Cyan glow */
+    --color-gold:        #C9A84C;     /* Rare/holo gold */
+    --color-neon:        #A855F7;     /* Neon violet */
+    --color-text:        #F0F4F8;     /* Primary text */
+    --color-text-muted:  #64748B;     /* Secondary text */
+    --color-border:      rgba(124, 58, 237, 0.15);
+    --color-border-hover:rgba(124, 58, 237, 0.4);
+
+  NEVER USE pure black (#000). Minimum is #080810.
+
+  RARITY GLOW SYSTEM (CSS custom properties — used on card borders,
+  badges, and product cards):
+    --glow-common:     none;
+    --glow-uncommon:   0 0 12px rgba(134, 239, 172, 0.4);
+    --glow-rare:       0 0 18px rgba(96, 165, 250, 0.5);
+    --glow-holo:       0 0 24px rgba(167, 139, 250, 0.6);
+    --glow-ultra-rare: 0 0 32px rgba(201, 168, 76, 0.7);
+    --glow-secret:     0 0 40px rgba(6, 182, 212, 0.8),
+                       0 0 80px rgba(124, 58, 237, 0.4);
+
+─── COSMIC BACKGROUND SYSTEM ───
+
+  • Slow-moving CSS/canvas particle animation: floating hexagonal or
+    diamond particles (representing card backs) drifting upward at
+    0.3–0.8 speed
+  • Radial gradient blobs: deep purple (#7C3AED at 8% opacity) top-left,
+    cyan (#06B6D4 at 6% opacity) bottom-right
+  • Subtle noise grain texture overlay at 3% opacity (data URI SVG,
+    NOT an external file)
+  • Faint scanline overlay at 2% opacity (CRT video game nod)
+  • Perspective grid: alternating grid lines at 60px with radial mask
+    fade-out at 70% from center
+
+─── TYPOGRAPHY ───
+
+  FONT STACK (Google Fonts):
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+  ASSIGNMENTS:
+    --font-display: 'Orbitron', sans-serif;     /* Hero H1, major headings */
+    --font-heading: 'Rajdhani', sans-serif;      /* Section H2s, subheadings */
+    --font-body:    'Inter', sans-serif;          /* Body text, paragraphs */
+    --font-mono:    'Space Mono', monospace;      /* Prices, badges, labels */
+
+  SIZING:
+    Hero H1:        Orbitron, clamp(3rem, 6vw, 5.5rem), uppercase,
+                    letter-spacing: 0.05em
+    Section H2:     Rajdhani, clamp(2rem, 4vw, 3.5rem), uppercase,
+                    2px cyan underline accent
+    Card Titles:    Rajdhani, 1.25rem, 600 weight
+    Body Text:      Inter, 1rem–1.1rem, 400 weight, line-height 1.6
+    Price Displays: Space Mono, bold, golden (#C9A84C)
+    Badges/Labels:  Space Mono, 0.7rem, uppercase, letter-spacing: 0.12em
+    Eyebrows:       Space Mono, 0.75rem, uppercase, tracking wide, accent color
+
+─── GLASSMORPHISM CARDS ───
+
+  Standard card treatment:
+    background: rgba(15, 15, 26, 0.7);
+    backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    transition: all 300ms ease;
+
+  On hover:
+    border-color → rgba(124, 58, 237, 0.6);
+    box-shadow → add --glow-holo;
+    transform: translateY(-4px);
+
+─── BUTTON SYSTEM ───
+
+  PRIMARY CTA (Skewed shimmer):
+    • background: linear-gradient(135deg, #7C3AED, #06B6D4)
+    • transform: skewX(-8deg); inner text: skewX(8deg) to counter
+    • Shimmer sweep animation on hover (light streak L→R, 0.6s)
+    • box-shadow: 0 0 20px rgba(124, 58, 237, 0.5)
+    • Font: Inter, 600, uppercase, white, no border-radius
+    • touch-action: manipulation (eliminates 300ms mobile delay)
+
+  SECONDARY/GHOST CTA:
+    • background: transparent
+    • border: 1px solid rgba(124, 58, 237, 0.5)
+    • Hover: border fills with purple gradient, text glows
+    • Arrow → icon slides 4px right on hover
+
+  DISCORD VARIANT:
+    • background: #5865F2 (Discord Blurple)
+    • Discord logo SVG prefix, white text
+
+  RARITY BADGE PILLS:
+    • Pill shape, color-coded per --glow-* rarity system
+    • Font: Space Mono, 10px, uppercase
+    • Subtle inner glow matching rarity tier
+
+─── SPACING TOKENS ───
+
+    --space-xs:  0.25rem;    --space-sm:  0.5rem;
+    --space-md:  1rem;       --space-lg:  2rem;
+    --space-xl:  4rem;       --space-2xl: 8rem;
+
+─── BORDER RADIUS TOKENS ───
+
+    --radius-sm:   6px;      --radius-md:  12px;
+    --radius-lg:   20px;     --radius-xl:  32px;
+    --radius-full: 9999px;
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§3. TECH STACK & ARCHITECTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+─── STACK ───
+
+  • Next.js 14+ (App Router, TypeScript)
+  • Tailwind CSS + custom config extending color palette from §2
+  • Framer Motion — component-level scroll reveals, hover states,
+    card flips, modal transitions
+  • GSAP + ScrollTrigger — hero stagger, count-up stats, parallax,
+    complex timeline sequences
+  • Shadcn/ui — Dialog, Sheet, Command palette (⌘K search)
+  • Magic UI — shimmer buttons, marquee, bento grid, particles
+  • Three.js or Spline — [BLANK HERO CANVAS] for 3D card pack asset
+  • Vercel-ready deployment, develop on localhost first
+
+─── COMPONENT ARCHITECTURE ───
+
+  /components/
+    layout/
+      TopBar.tsx
+      Navbar.tsx
+      Footer.tsx
+      MobileMenu.tsx          ← Shadcn Sheet, full-screen slide-over
+    sections/
+      Hero.tsx
+      TrustBar.tsx             ← Game logo marquee
+      StatsBar.tsx             ← GSAP count-up numbers
+      GameCategories.tsx       ← TCG-specific bento grid
+      FeaturedProducts.tsx     ← Product grid with tab filters
+      BuylistBanner.tsx        ← "We buy your cards" diagonal split
+      EventsCalendar.tsx       ← Tournament list with progress bars
+      ValueProps.tsx            ← Bento 3-grid (pain → result)
+      SocialProof.tsx           ← Story-viewer style reviews
+      GoogleReviews.tsx         ← 3-card review strip
+      NewReleases.tsx           ← Horizontal snap-scroll releases
+      PricingMembership.tsx     ← Optional club tiers
+      DiscordCTA.tsx            ← Community CTA section
+      LeadCapture.tsx           ← Email + qualifying questions
+      Contact.tsx               ← Map + info 2-column
+    ui/
+      SkewButton.tsx            ← Reusable skewed CTA (primary|ghost|discord)
+      CardHover.tsx             ← 3D tilt card flip component
+      RarityBadge.tsx           ← Glow pills (common→secret)
+      PriceTag.tsx              ← Space Mono gold price display
+      EventCard.tsx             ← Event with progress bar + inscription
+      GameCategoryCard.tsx      ← Bento cell with gradient + logo
+      CountdownTimer.tsx        ← Flip-card digit timer
+      StoryViewer.tsx           ← Avatar row → fullscreen modal
+      SearchDialog.tsx          ← ⌘K command palette overlay
+
+  /app/
+    page.tsx
+    layout.tsx
+    globals.css
+    api/contact/route.ts       ← Form handler (Resend)
+    api/buylist/route.ts       ← Buylist submission
+    api/preorder/route.ts      ← Pre-order system
+
+  /config/
+    site.ts                    ← siteConfig (swap identity here)
+
+  /lib/
+    utils.ts                   ← cn() helper, formatPrice(), etc.
+    animations.ts              ← GSAP timeline factories
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§4. SECTIONS — BUILD ALL OF THESE (order = render order)
+═══════════════════════════════════════════════════════════════════════════════
+
+Each section below includes:
+  [LAYOUT] — structural description
+  [CONTENT] — exact copy and data
+  [ANIMATION] — motion specification
+  [ACCESSIBILITY] — WCAG requirements
+
+────────────────────────────────────────────────────────────────────
+1. TOP BAR
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Full-width, dark surface (#0F0F1A), purple-left accent line (2px),
+         fixed top, z-index: 100.
+[CONTENT]
+  Left:  "📦 Envíos en 24h · Recogida en tienda disponible"
+  Right: Discord icon + "Únete a nuestra comunidad →" → links to Discord
+[STYLE]  Space Mono, 11px, text-muted. Height: ~36px.
+[A11Y]   role="region" aria-label="Anuncio" (NOT role="banner" —
+         that conflicts with <header>). Verified in audit F1.2.
+
+────────────────────────────────────────────────────────────────────
+2. NAVBAR (sticky, glassmorphism)
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Sticky top (below TopBar), height: 72px.
+         background: rgba(15,15,26,0.8) + backdrop-filter: blur(20px) saturate(180%)
+         On scroll >20px: background opacity → 0.95, add box-shadow.
+[CONTENT]
+  Logo:  [STORE NAME] in Orbitron, large, white + purple glow on logo icon.
+         <img> with fetchpriority="high", loading="eager", explicit
+         width/height (LCP optimization — verified audit F3.1).
+  Nav:   Inicio | Tienda ▼ | Compra tus cartas | Eventos | Blog | Contacto
+  MEGA DROPDOWN for "Tienda":
+    Trigger: <button> with aria-expanded, aria-controls, aria-haspopup
+    (NOT <a> with :hover — must be keyboard+touch accessible. Audit F1.3, F2.4)
+    Columns: [Pokémon] [Magic] [Yu-Gi-Oh!] [Lorcana]
+             [One Piece] [Sellado] [Accesorios] [Outlet]
+    Each column: game logo icon + brief descriptor + featured product thumb
+    Width: min(600px, 95vw) to prevent overflow at 1024px (audit F5.3)
+  Right: Search (opens ⌘K Command palette — NOT window.prompt(). Audit F2.3),
+         Cart with count badge (aria-live="polite"),
+         Primary CTA "Ver singles →"
+  Mobile: Hamburger → Shadcn Sheet full-screen slide-over.
+         Transition: 300ms (NOT 600ms — audit F7.1).
+         Close on Escape key, focus returns to burger button.
+[A11Y]
+  • Touch targets: min-width: 44px, min-height: 44px on all icon buttons (F2.1)
+  • touch-action: manipulation on all buttons (F2.2)
+  • aria-current="page" on active nav link via JS (F9.4)
+  • Skip link: <a class="skip-link" href="#main-content"> BEFORE TopBar (F1.1)
+  • Focus-visible: 2px solid accent outline on all interactive elements (F1.5)
+  • Max 5 items in main nav (pattern F9)
+
+────────────────────────────────────────────────────────────────────
+3. HERO SECTION (full viewport height)
+────────────────────────────────────────────────────────────────────
+[LAYOUT] min-height: 100svh (NOT 100vh — better on mobile. Audit F5).
+         2-column grid: content left, 3D asset right.
+[CONTENT]
+  Social proof floating badge (top-left, glassmorphism pill):
+    "⭐ 4,9 · +200 reseñas verificadas en Google"
+    Purple border glow, Framer Motion y-axis float animation.
+  H1 (GSAP word-by-word stagger):
+    Line 1: "TU TIENDA DE"
+    Line 2: "[CARTAS]" ← gradient purple→cyan (from siteConfig)
+    Line 3: "DE REFERENCIA"
+  Subtitle: Inter, text-muted, max-width: 55ch (audit F6.3).
+    Pull from siteConfig.heroSubtitle.
+  Two CTAs side by side:
+    [Explorar tienda →] (Primary skewed shimmer)
+    [Ver próximos eventos] (Ghost button)
+  BLANK CANVAS: <div id="spline-hero-canvas" min-height: 420px>
+    (Ready for Spline/Three.js 3D card pack animation)
+  Scroll indicator: animated chevron, cyan, auto-hides after 3s.
+[ANIMATION]
+  GSAP Timeline (ease: "power3.out"):
+    1. Eyebrow: {opacity:0, y:20} → {opacity:1, y:0}, 0.6s
+    2. Title lines: {opacity:0, y:60, skewY:4} → reveal, 0.75s, stagger 0.12s
+    3. Subtitle + CTAs + trust: {opacity:0, y:24} → reveal, 0.6s, stagger 0.12s
+    4. Asset: {opacity:0, scale:0.85} → {scale:1}, 1.2s, ease: "back.out(1.7)"
+       (NOT elastic.out — too bouncy for e-commerce. Audit F7.2)
+  Parallax: grid background drifts at 0.3x scroll speed vs content.
+[BACKGROUND]
+  Cosmic particle field + radial gradient blobs + noise grain + grid.
+
+────────────────────────────────────────────────────────────────────
+4. TRUST BAR — GAME LOGO MARQUEE
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Full-width dark surface, subtle top/bottom border (purple 10%).
+[CONTENT]
+  Label: "JUGAMOS A:" in Space Mono, small, text-muted.
+  Magic UI <Marquee>: Logos of all games from siteConfig.games.
+  Logos: monochromatic white/gray at 60% opacity, hover → full color + glow.
+  Speed: 35s loop, pauseOnHover: true.
+
+────────────────────────────────────────────────────────────────────
+5. STATS BAR (GSAP count-up)
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Full-width dark surface, 4-column grid.
+[CONTENT] Pull from siteConfig.stats. Each: large Orbitron number
+         with gradient color + Inter label below.
+         Separated by 1px vertical dividers (purple 20%).
+[ANIMATION] GSAP ScrollTrigger count-up: start "top 80%",
+           duration 2s, ease "power2.out". Subtle purple glow pulse
+           under each number on complete.
+
+────────────────────────────────────────────────────────────────────
+6. GAME CATEGORIES — BENTO GRID
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Section headline: "ELIGE TU JUEGO" (Rajdhani, 4xl, cyan underline).
+         Responsive bento grid: 2 cols mobile, 4 cols desktop.
+[CONTENT] Each cell = game category card:
+  • Full card background: game-themed gradient
+  • Game logo centered (SVG/PNG, white)
+  • Card count: "+2.400 singles disponibles" (Space Mono)
+  • Rarity badge pills: ⚪ Comunes | 🔵 Raras | 🟣 Ultras | ✨ Secretas
+  • Feature card (double width): "SELLADO & BOOSTERS" with shimmer
+    gradient + "Nuevas llegadas" badge (blinking green dot + text)
+[ANIMATION] Framer Motion: staggerChildren 0.06, hover scale(1.03)
+           + rarity glow matching game color.
+[A11Y] Each card is a link with descriptive aria-label.
+       Use <article> with role="listitem" inside container with role="list".
+
+────────────────────────────────────────────────────────────────────
+7. FEATURED PRODUCTS — "LO MÁS BUSCADO"
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Headline + glassmorphism tab filter pills:
+         [Todos] [Pokémon] [Magic] [Yu-Gi-Oh!] [Lorcana]
+         Active tab: purple bg + glow.
+         Product grid: 2 cols mobile, 4 cols desktop.
+[CONTENT] Each <CardHover> product card:
+  Front: card image (lazy loaded), name, set icon, condition badge.
+  Hover: subtle 3D tilt (Framer Motion useMotionValue x/y → rotateX/Y ±15deg).
+  Rarity glow on border matching rarity system.
+  Price: Space Mono gold "12,50€"
+  Stock: "✓ En stock" (green) / "⚡ Últimas 3 unidades" (amber, pulse animation)
+  Quick-add button: appears on hover, slides up from bottom.
+  "Ver detalles" ghost link.
+[PAGINATION] "Cargar más" skewed button at bottom.
+
+────────────────────────────────────────────────────────────────────
+8. BUYLIST BANNER — "COMPRAMOS TUS CARTAS"
+────────────────────────────────────────────────────────────────────
+CONDITIONAL: Only render if siteConfig.features.hasBuylist === true.
+
+[LAYOUT] Full-width diagonal split:
+         Left: dark bg + content | Right: purple→cyan gradient.
+[CONTENT]
+  Left:
+    Badge: "💰 BUYLIST ACTIVA" (blinking dot, Space Mono)
+    H2: "¿TIENES CARTAS QUE NO USAS?" (Orbitron)
+    Subtitle: "Consulta nuestra buylist actualizada y consigue crédito
+              o efectivo. Proceso rápido, tasación justa."
+    CTAs: [Ver buylist completa] [Enviar tasación online]
+  Right:
+    3 floating overlapping card mockups with CSS 3D perspective,
+    showing "carta → euro" transformation.
+[ANIMATION] GSAP ScrollTrigger scrub:1.
+  Left: translateX(-60px)→0 | Right: translateX(60px)→0.
+
+────────────────────────────────────────────────────────────────────
+9. VALUE PROPOSITION — BENTO 3-GRID
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Magic UI BentoGrid, 3 cells, glassmorphism.
+[CONTENT]
+  Cell 1 — "PRECIOS ACTUALIZADOS DIARIO":
+    Icon: chart (cyan). "No más pagar de más. Nuestros precios reflejan
+    el mercado real." Sub: "Comparado con CardMarket cada 24h"
+  Cell 2 — "STOCK REAL, SIN SORPRESAS" (larger cell, center):
+    Icon: shield (purple). "Lo que ves en web, existe en tienda.
+    Sistema de inventario en tiempo real."
+    Animated counter: "Última actualización: hace 4 minutos" (Space Mono,
+    blinking cursor)
+  Cell 3 — "COMUNIDAD + TORNEOS":
+    Icon: trophy (gold). "Más que una tienda. Torneos semanales, ligas,
+    FNM, prereleases."
+[ANIMATION] Hover → border glow + scale(1.02), stagger 0.1s.
+
+────────────────────────────────────────────────────────────────────
+10. NEW RELEASES — "PRÓXIMAS LLEGADAS"
+────────────────────────────────────────────────────────────────────
+CONDITIONAL: Only if siteConfig.features.hasPreorders === true.
+
+[LAYOUT] Headline + countdown timer for next release.
+         Horizontal snap-scroll card row on mobile.
+[CONTENT] Each release card:
+  Set artwork/banner, set name, game logo.
+  Release date badge (Space Mono, amber if <30 days).
+  "Reservar ahora" + "47 reservas confirmadas"
+  If <7 days: "🔥 LANZAMIENTO INMINENTE" badge with pulse.
+[MODAL] Pre-order: Name + email + units → submit to /api/preorder.
+[COUNTDOWN] <CountdownTimer> with flip-card digits, cyan, Space Mono.
+
+────────────────────────────────────────────────────────────────────
+11. EVENTS & TOURNAMENTS — "JUEGA, COMPITE, GANA"
+────────────────────────────────────────────────────────────────────
+CONDITIONAL: Only if siteConfig.features.hasEvents === true.
+
+[LAYOUT] Headline (Orbitron). Calendar-style with event cards.
+[CONTENT] Each <EventCard>:
+  Game logo + event type badge: [FNM] [Prerelease] [Liga] [Torneo] [Commander]
+  Date + time (Space Mono, purple)
+  Format: "Standard / Draft / Sealed / Commander"
+  Price: "Entrada: 10€" or "FREE"
+  Slots: animated progress bar "18/32 plazas" (GSAP width from 0→%)
+  CTA: "Inscribirme" / "Lista de espera" if full.
+  Filter pills: [Todos] [Pokémon] [Magic] [Yu-Gi-Oh!] [Gratuitos]
+
+────────────────────────────────────────────────────────────────────
+12. SOCIAL PROOF — INSTAGRAM STORY VIEWER
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Headline: "LA COMUNIDAD HABLA" (Orbitron, center).
+         Row of 6-8 circular avatar thumbnails.
+[CONTENT] Each avatar:
+  Purple/cyan gradient ring border (Instagram story ring).
+  Player name below (Space Mono, small). Game icon badge (bottom-right).
+  Click → fullscreen Shadcn Dialog (dark):
+    Progress bars at top (auto-advance 4s).
+    Tap left/right to navigate.
+    Content: customer result stories with 5-star rating + review badge.
+[ANIMATION] Avatar row: Framer Motion stagger 0.1s.
+           Modal: scale(0.8→1), opacity 0→1.
+
+────────────────────────────────────────────────────────────────────
+13. GOOGLE/TRUSTPILOT REVIEWS STRIP
+────────────────────────────────────────────────────────────────────
+[LAYOUT] 3 dark glassmorphism cards in a row.
+[CONTENT] 5 gold stars, review text, reviewer name + avatar initial.
+  "Ver todas las reseñas en [Platform] →" link below + platform logo.
+[ANIMATION] Cards slide in from bottom, stagger 0.15s.
+
+────────────────────────────────────────────────────────────────────
+14. DISCORD / COMMUNITY CTA
+────────────────────────────────────────────────────────────────────
+CONDITIONAL: Only if siteConfig.features.hasDiscord === true.
+
+[LAYOUT] Full-width, purple→dark gradient. Discord Nitro aesthetic.
+[CONTENT]
+  H2: "LA TIENDA TAMBIÉN VIVE ONLINE"
+  Sub: "Torneos online, sorteos, alertas de restock, discusiones de meta."
+  Stats: "+1.200 miembros" | "#singles-search activo" | "Sorteos semanales"
+  CTA: "Unirme al Discord →" (Discord blurple variant button)
+[BACKGROUND] Animated wave pattern or particle field.
+
+────────────────────────────────────────────────────────────────────
+15. LEAD CAPTURE — "ACCESO ANTICIPADO"
+────────────────────────────────────────────────────────────────────
+[LAYOUT] ONLY white/light section on the entire page (maximum contrast).
+[CONTENT]
+  H2 (dark text): "Sé el primero en saber"
+  Sub: "Novedades, restocks, torneos y ofertas exclusivas antes que nadie."
+  4 qualifying questions (2×2 grid desktop, stacked mobile):
+    Q1: ¿Qué juego es tu principal? (Select: games from siteConfig)
+    Q2: ¿Tipo de jugador? (Casual / Competitivo / Coleccionista / Inversor)
+    Q3: ¿Frecuencia de compra? (Semanal / Mensual / Esporádica)
+    Q4: ¿Qué te interesa más? (Singles / Sellado / Accesorios / Torneos)
+  Email input: full width, dark border, purple focus ring.
+  CTA: "Activar mi acceso →" (Primary skewed shimmer)
+  Success: checkmark animation + "¡Bienvenido/a!"
+[A11Y]
+  • Visible <label> on EVERY input (NOT sr-only. Audit F8.1)
+  • <p role="alert" aria-live="assertive"> for error messages (F8.2)
+  • aria-describedby connecting input to error + legal text (F8.3)
+  • type="email" + autocomplete="email" on email field
+  • required + aria-required="true"
+
+────────────────────────────────────────────────────────────────────
+16. CONTACT + MAP
+────────────────────────────────────────────────────────────────────
+[LAYOUT] 2-column (50/50 desktop, stacked mobile).
+[CONTENT]
+  Left: Store name (Orbitron), address, email, phone, WhatsApp (with icons).
+        Horario with green = abierto ahora. Social links row.
+  Right: Google Maps iframe (rounded, border: 1px solid purple 30%,
+         no extra controls). "Cómo llegar" link opens Google Maps.
+  CONDITIONAL: If siteConfig.locationType === "online-only", show
+               contact form instead of map.
+
+────────────────────────────────────────────────────────────────────
+17. FOOTER
+────────────────────────────────────────────────────────────────────
+[LAYOUT] Dark (#080810), 4-column grid (1-col on mobile at 480px. Audit F5.2).
+[CONTENT]
+  Col 1: Logo + tagline + social icons
+  Col 2: Tienda → category links
+  Col 3: Info → Sobre nosotros, Eventos, Blog, Buylist, Contacto
+  Col 4: Newsletter mini-form (email + subscribe) + payment badges
+         (Visa, MC, PayPal, Apple Pay, Klarna)
+  Bottom bar: © + Legal links + "Diseñado con ❤️ para la comunidad TCG"
+  Purple gradient line at very top of footer (2px).
+[A11Y]
+  • <nav aria-label="Navegación de pie de página">
+  • All links are real URLs, not anchors (audit F9.3)
+  • Payment badges with aria-label on each
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§5. ANIMATION SPECIFICATION (GSAP + Framer Motion + CSS)
+═══════════════════════════════════════════════════════════════════════════════
+
+GSAP (global/complex timelines):
+  • Hero H1:     word-by-word stagger (y:60→0, opacity:0→1, skewY:4→0,
+                 duration:0.75, stagger:0.12, ease:"power3.out")
+  • Stats:       ScrollTrigger count-up, start:"top 80%", 2s, "power2.out"
+  • Event slots: ScrollTrigger width animation 0→%
+  • Buylist:     ScrollTrigger scrub:1, translateX(±60px)→0
+  • Category cards: stagger {amount:0.6, from:"start"}, y:50→0, scale:0.96→1
+
+Framer Motion (component-level):
+  • Sections:    initial:{y:50, opacity:0} whileInView:{y:0, opacity:1}
+                 transition:{duration:0.6} viewport:{once:true, margin:"-100px"}
+  • Products:    staggerChildren 0.08, hover scale(1.03) + rarity glow
+  • Categories:  staggerChildren 0.06
+  • Story avatars: staggerChildren 0.1
+  • Modal:       scale(0.8→1), opacity 0→1 on open
+  • 3D card tilt: useMotionValue(x/y) → rotateX/rotateY at ±15deg
+
+CSS Animations:
+  • Cosmic particles:  keyframe drift y:0→-100vh, randomized x-drift
+  • Shimmer button:    keyframe sweep translateX:-100%→100%, 0.6s on hover
+  • Blinking dot:      keyframe pulse opacity 1→0.3→1, 1.5s infinite
+  • Card foil shimmer: linear-gradient bg-position animation (holo cards)
+  • Countdown digits:  flip card animation
+
+CRITICAL ANIMATION RULES (from audit):
+  • Only animate transform and opacity (GPU-composited properties)
+  • will-change: transform, opacity on continuously animated elements (F3.5, F7.3)
+  • All UI interaction transitions ≤ 300ms (F2.5, F7.1)
+  • Use back.out(1.7) instead of elastic.out for spring-like entries (F7.2)
+  • Stagger range: 30-100ms for lists (verified in audit)
+  • @media (prefers-reduced-motion: reduce) → disable ALL animations,
+    keep transitions max 0.2s. GSAP must check window.matchMedia() (F1, F7)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§6. ACCESSIBILITY & PERFORMANCE REQUIREMENTS (from UI/UX Pro Max Audit)
+═══════════════════════════════════════════════════════════════════════════════
+
+These are NON-NEGOTIABLE. Every item was validated against a real
+production build and verified. Failures are instant demerits.
+
+─── ACCESSIBILITY (WCAG AA) ───
+
+  [x] <html lang="es"> (or appropriate language)
+  [x] Skip link BEFORE any visible content: <a class="skip-link" href="#main-content">
+  [x] Heading hierarchy: exactly ONE <h1> per page, H1→H2→H3 no skips
+  [x] All images: descriptive alt text (not "image.png")
+  [x] All icon-only buttons: aria-label
+  [x] All <nav>: aria-label
+  [x] Mega menu: <button> trigger with aria-expanded + aria-controls (NOT <a>)
+  [x] Color contrast ≥ 4.5:1 for normal text, ≥ 3:1 for large text
+  [x] Focus-visible: 2px solid accent outline on ALL focusable elements
+  [x] Escape key closes modals and menus
+  [x] Focus management: focus returns to trigger when dialog closes
+  [x] prefers-reduced-motion: reduce → disables all animations
+  [x] Semantic HTML: header, nav, main, article, footer, blockquote, cite, time
+  [x] Minimum font-size: 12px (0.75rem). Nothing smaller. (F1.4, F6.1)
+  [x] No emoji in structural navigation (F1.6)
+  [x] aria-current="page" on active nav link
+
+─── TOUCH & INTERACTION ───
+
+  [x] All interactive targets: min 44×44px (Apple HIG) / 48×48dp (Material)
+  [x] touch-action: manipulation on ALL buttons (eliminates 300ms delay)
+  [x] No window.prompt() or window.confirm() — use real overlays
+  [x] Hover states on every interactive element
+  [x] cursor: pointer on all clickable elements
+
+─── PERFORMANCE (Target: Lighthouse 90+) ───
+
+  [x] LCP image: fetchpriority="high" + loading="eager" + explicit width/height
+  [x] Below-fold images: loading="lazy"
+  [x] Scripts: defer attribute on all external JS
+  [x] Google Fonts: display=swap in URL
+  [x] preconnect: Google Fonts (2 domains) + any CDN (Trustpilot, etc.)
+  [x] SRI hashes on CDN scripts (integrity + crossorigin="anonymous")
+  [x] will-change on continuously animated elements (F3.5)
+  [x] No render-blocking resources
+  [x] Noise grain: inline SVG data URI (not external file)
+  [x] Category images: <img> with loading="lazy" (not CSS background-image)
+
+─── FORMS ───
+
+  [x] Visible <label> on every input (NOT sr-only — audit F8.1)
+  [x] Error messages: <p role="alert" aria-live="assertive"> (F8.2)
+  [x] aria-describedby connecting inputs to errors + legal text (F8.3)
+  [x] type="email" + autocomplete="email"
+  [x] required + aria-required="true"
+
+─── RESPONSIVE BREAKPOINTS ───
+
+  Mobile:  < 640px  (1 col, hamburger, horizontal scroll for carousels)
+  Tablet:  640–1024px (2-col grids, collapsible sections)
+  Desktop: > 1024px (full layout)
+  Large:   > 1440px (max-width: 1400px container, adjust density) ← F5.1
+
+─── SEO ───
+
+  [x] Unique <title> + <meta description> per page
+  [x] Canonical URL
+  [x] Open Graph tags (type, url, title, description, image, locale, site_name)
+  [x] Twitter Card tags (card, site, title, description, image)
+  [x] Schema.org JSON-LD (siteConfig.seo.schemaType)
+  [x] sitemap.xml + robots.txt
+  [x] Alt text on all images
+  [x] Semantic heading hierarchy
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§7. PHASE 5 — QUALITY AUDIT CHECKLIST (run before declaring complete)
+═══════════════════════════════════════════════════════════════════════════════
+
+After building, run this audit and fix ALL failures:
+
+SEO AUDIT:
+  [ ] All meta tags present and unique per page
+  [ ] Heading hierarchy correct (one H1, logical H2→H3)
+  [ ] Alt text on all images
+  [ ] Schema markup validates (test at schema.org validator)
+  [ ] sitemap.xml generated
+  [ ] robots.txt present
+  [ ] Open Graph tags set
+  [ ] Canonical URLs set
+
+ACCESSIBILITY AUDIT:
+  [ ] Color contrast passes (test with axe-core or similar)
+  [ ] All interactive elements keyboard accessible
+  [ ] Focus indicators visible on every focusable element
+  [ ] prefers-reduced-motion respected (test by enabling in OS)
+  [ ] Skip link works (tab from top of page)
+  [ ] Mega menu navigable by keyboard only
+  [ ] Screen reader announces dynamic content (aria-live regions)
+
+PERFORMANCE AUDIT:
+  [ ] Images optimized and lazy loaded
+  [ ] No render-blocking CSS/JS
+  [ ] GSAP loaded efficiently (defer, SRI)
+  [ ] Animations don't cause layout shift (CLS ≈ 0)
+  [ ] Lighthouse score ≥ 90 on all 4 metrics
+
+CLIENT-READY CHECKLIST:
+  [ ] All placeholder content clearly marked with comments
+  [ ] 3D asset canvas clearly marked (id="spline-hero-canvas")
+  [ ] API endpoints documented (/api/contact, /api/buylist, /api/preorder)
+  [ ] Favicon set
+  [ ] OG images set
+  [ ] 404 page exists with same design system
+  [ ] README includes: setup, local dev, deployment (Vercel), env vars
+  [ ] AI chatbot widget placeholder present (if enabled)
+  [ ] Feature toggles from siteConfig work correctly
+  [ ] Form handlers have action endpoints documented
+
+SAVE AUDIT AS: research/04-quality-audit.md
+Fix anything that fails before declaring the build complete.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§8. REUSABLE COMPONENTS API
+═══════════════════════════════════════════════════════════════════════════════
+
+<SkewButton
+  label="string"
+  href="string?"
+  onClick="fn?"
+  variant="primary | ghost | discord"
+  size="sm | md | lg"
+/>
+
+<CardHover product={ProductType} />
+  → 3D tilt on mousemove (Framer Motion)
+  → Rarity glow from --glow-* system
+  → Lazy image, quick-add overlay on hover
+
+<RarityBadge rarity="common | uncommon | rare | holo | ultra | secret" />
+  → Pill with glow from rarity system
+
+<PriceTag price={number} original={number?} currency="€" />
+  → Space Mono, gold, strikethrough original if present
+
+<EventCard event={EventType} />
+  → Full card with animated progress bar, game badge, inscription CTA
+
+<GameCategoryCard game={GameType} />
+  → Bento cell with gradient, logo, card count, rarity pills
+
+<CountdownTimer targetDate={Date} format="DD:HH:MM:SS" />
+  → Flip card digits, cyan, Space Mono
+
+<StoryViewer stories={StoryType[]} />
+  → Avatar row → fullscreen modal, progress bars, tap navigation
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§9. OUTPUT STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+When complete, the project should contain:
+
+  project/
+  ├── research/                          (if Phase 1 was executed)
+  │   ├── 01-client-brand.md
+  │   ├── 02-competitor-analysis.md
+  │   ├── 03-build-brief.md
+  │   ├── niche-analysis-report.md       ← client-facing lead magnet
+  │   └── 04-quality-audit.md            ← final audit results
+  ├── src/
+  │   ├── app/
+  │   ├── components/
+  │   ├── config/site.ts
+  │   └── lib/
+  ├── public/
+  │   ├── sitemap.xml
+  │   ├── robots.txt
+  │   └── assets/
+  ├── tailwind.config.ts
+  ├── next.config.js
+  ├── package.json
+  ├── .env.local.example
+  ├── vercel.json
+  └── README.md                          ← setup + deploy + cost breakdown
+
+
+═══════════════════════════════════════════════════════════════════════════════
+§10. IMMUTABLE RULES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. RESEARCH FIRST. If the client has an existing site, always scrape
+   and analyze before designing. Never start from scratch when brand
+   assets exist online.
+
+2. SAVE DELIVERABLES. Each research file is a tangible deliverable
+   the user can share with the client or use as a sales asset.
+
+3. BE OPINIONATED. Pick specific hex colors, specific fonts, specific
+   easing curves. Justify each choice with competitor data or UX research.
+
+4. ACCESSIBILITY IS NON-NEGOTIABLE. Every item in §6 must pass.
+   No "we'll fix it later" — build accessible from the start.
+
+5. CONDITIONAL SECTIONS. Respect siteConfig.features toggles.
+   Only render sections the store actually needs.
+
+6. THE NICHE REPORT IS A SALES TOOL. Format it as something impressive
+   enough to email to a cold prospect and close the deal.
+
+7. PERFORMANCE = MONEY. Every 100ms of load time costs conversions.
+   Target Lighthouse 90+ on all metrics.
+
+8. MOBILE-FIRST. 68% of traffic in the TCG/anime niche is mobile.
+   Design for 375px first, scale up.
+
+9. SPEED OF DELIVERY. The whole process should feel fast and automated,
+   not like a consulting engagement. Ship, don't deliberate.
+
+10. LEAVE CLEAR PLACEHOLDERS. 3D asset slots, API endpoints, and
+    credential fields must be clearly marked with comments so the
+    client can drop in their assets without reading the full codebase.
