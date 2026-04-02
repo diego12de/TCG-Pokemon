@@ -38,6 +38,24 @@ export function Hero() {
         "-=0.4"
       );
     }
+
+    // Floating animation for the 3D asset
+    gsap.to("#hero-3d-asset", {
+      y: -20,
+      duration: 3,
+      ease: "power1.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
+    gsap.to("#hero-3d-asset", {
+      rotateY: 10,
+      rotateX: 5,
+      duration: 4,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
   }, []);
 
   return (
@@ -72,16 +90,26 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Asset Right (Blank Canvas for Spline/3D) */}
-        <div className="relative w-full h-[420px] lg:h-[600px] flex items-center justify-center">
-          <div id="spline-hero-canvas" className="w-full h-full relative">
-            {/* Placeholder for 3D asset */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-2/10 rounded-full blur-3xl animate-pulse-slow" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-64 h-80 glass-card rotate-12 flex items-center justify-center border-accent/50 shadow-[var(--glow-holo)]">
-                <span className="font-mono text-text-muted text-sm">[3D ASSET PLACEHOLDER]</span>
-              </div>
-            </div>
+        {/* Asset Right (Interactive 3D Poké Ball) */}
+        <div className="relative w-full h-[420px] lg:h-[600px] flex items-center justify-center lg:justify-end perspective-[1000px]">
+          <div 
+            id="hero-3d-asset" 
+            className="relative w-72 h-72 sm:w-96 sm:h-96 transition-transform duration-500 hover:scale-105"
+          >
+            {/* Ambient glow layers */}
+            <div className="absolute inset-0 bg-accent/20 rounded-full blur-[100px] animate-pulse-slow" />
+            <div className="absolute inset-0 bg-accent-2/10 rounded-full blur-[80px] animate-pulse-slow" style={{ animationDelay: "1s" }} />
+            
+            {/* Main 3D Asset */}
+            <img 
+              src="/assets/hero_3d_pokeball.png" 
+              alt="Holographic Poké Ball" 
+              className="w-full h-full object-contain relative z-20 drop-shadow-[0_0_50px_rgba(124,58,237,0.4)]"
+            />
+
+            {/* Decorative orbit elements */}
+            <div className="absolute inset-0 border border-white/5 rounded-full scale-110 animate-spin-slow opacity-20" />
+            <div className="absolute inset-0 border border-accent/10 rounded-full scale-125 animate-spin-slow-reverse opacity-10" />
           </div>
         </div>
       </div>
