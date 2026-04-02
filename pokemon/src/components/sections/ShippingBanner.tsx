@@ -3,7 +3,7 @@ import { siteConfig } from "@/src/config/site";
 
 export function ShippingBanner() {
   return (
-    <div className="w-full bg-gradient-to-r from-accent/20 via-accent-2/20 to-accent/20 border-b border-accent/20 py-2.5 relative overflow-hidden">
+    <div className="w-full bg-surface bg-gradient-to-r from-accent/10 via-accent-2/10 to-accent/10 border-b border-accent/20 py-2.5 fixed top-[36px] z-[95] overflow-hidden">
       {/* Animated shimmer background */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer_4s_linear_infinite] bg-[length:200%_auto]" />
       

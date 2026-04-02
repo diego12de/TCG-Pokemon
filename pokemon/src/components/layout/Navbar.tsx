@@ -34,7 +34,7 @@ export function Navbar({ onViewChange }: { onViewChange: (view: "home" | "single
   return (
     <header 
       className={cn(
-        "fixed top-9 left-0 right-0 z-50 h-[72px] transition-all duration-300",
+        "fixed top-[76px] left-0 right-0 z-50 h-[72px] transition-all duration-300",
         scrolled 
           ? "bg-[#0f0f1a]/95 backdrop-blur-[20px] saturate-180 shadow-[0_4px_24px_rgba(0,0,0,0.4)] border-b border-border" 
           : "bg-[#0f0f1a]/80 backdrop-blur-[20px] saturate-180"

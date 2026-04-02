@@ -227,7 +227,7 @@ export const MOCK_PRODUCTS: ProductType[] = [
   {
     id: "21",
     name: "The One Ring (Serial Numbered)",
-    image: "https://images.unsplash.com/photo-1622819584099-e0e9ec9d8684?q=80&w=600&auto=format&fit=crop",
+    image: "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=614343&type=card",
     set: "Magic Tales of Middle-earth",
     condition: "MINT",
     rarity: "secret",
@@ -449,7 +449,7 @@ export const MOCK_PRODUCTS: ProductType[] = [
   {
     id: "41",
     name: "Elsa - Spirit of Winter",
-    image: "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.dreamborn.ink/cards/en/1-042_hires.png",
     set: "Lorcana The First Chapter",
     condition: "MINT",
     rarity: "secret",
@@ -671,7 +671,7 @@ export const MOCK_PRODUCTS: ProductType[] = [
   {
     id: "61",
     name: "Blue-Eyes White Dragon",
-    image: "https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.ygoprodeck.com/images/cards/89631139.jpg",
     set: "Yu-Gi-Oh! Legend of Blue Eyes",
     condition: "MINT",
     rarity: "secret",

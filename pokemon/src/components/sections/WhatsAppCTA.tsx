@@ -19,7 +19,7 @@ export function WhatsAppCTA() {
 
       <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-bg" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col items-center">
         <div className="w-20 h-20 mx-auto bg-[#25D366] rounded-2xl flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(37,211,102,0.5)] rotate-12 hover:rotate-0 transition-transform duration-300">
           {/* WhatsApp Icon */}
           <svg width="40" height="40" viewBox="0 0 24 24" fill="white">

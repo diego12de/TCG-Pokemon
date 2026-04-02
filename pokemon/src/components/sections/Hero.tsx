@@ -41,7 +41,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] flex items-center pt-[108px] pb-20 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center pt-[148px] pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
         
         {/* Content Left */}

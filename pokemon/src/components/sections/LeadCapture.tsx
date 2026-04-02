@@ -27,7 +27,7 @@ export function LeadCapture() {
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl lg:text-5xl font-bold mb-4">SÉ EL PRIMERO EN SABER</h2>
           <p className="text-lg text-bg/70 max-w-2xl mx-auto">
