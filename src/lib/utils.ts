@@ -6,8 +6,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number, currency: string = "€") {
-  return new Intl.NumberFormat("es-ES", {
+  const formatted = new Intl.NumberFormat("es-ES", {
     style: "currency",
     currency: "EUR",
-  }).format(price).replace("€", currency).trim() + currency;
+  }).format(price);
+  
+  if (currency !== "€") {
+    return formatted.replace("€", currency);
+  }
+  return formatted;
 }

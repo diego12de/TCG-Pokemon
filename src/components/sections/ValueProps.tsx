@@ -26,7 +26,7 @@ const features = [
   {
     title: "COMUNIDAD + TORNEOS",
     description: "Más que una tienda. Torneos semanales, ligas, FNM, prereleases.",
-    sub: "Únete a nuestro Discord",
+    sub: "Escríbenos por WhatsApp",
     icon: Trophy,
     color: "text-gold",
     bg: "bg-gold/10",

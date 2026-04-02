@@ -14,9 +14,9 @@ export const siteConfig = {
   socialLinks: {
     instagram: "https://instagram.com",
     tiktok: "https://tiktok.com",
-    discord: "https://discord.com",
+    twitter: "https://x.com",
     youtube: "https://youtube.com",
-    twitter: "https://twitter.com",
+    whatsapp: "https://wa.me/34600000000",
   },
 
   // ─── TCG GAMES SUPPORTED ───
@@ -38,12 +38,14 @@ export const siteConfig = {
     hasBuylist: true,
     hasEvents: true,
     hasMembership: false,
-    hasDiscord: true,
+    hasWhatsApp: true,
     hasBlog: false,
     hasPreorders: true,
     hasInstallments: true,
+    hasBlindBox: true,
     chatbotWidget: true,
     reviewPlatform: "google",
+    freeShippingThreshold: 100, // euros
   },
 
   // ─── CONTENT ───

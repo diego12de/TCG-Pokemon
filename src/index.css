@@ -19,12 +19,12 @@
   --color-border: rgba(124, 58, 237, 0.15);
   --color-border-hover: rgba(124, 58, 237, 0.4);
 
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
-  --spacing-2xl: 8rem;
+  --site-space-xs: 0.25rem;
+  --site-space-sm: 0.5rem;
+  --site-space-md: 1rem;
+  --site-space-lg: 2rem;
+  --site-space-xl: 4rem;
+  --site-space-2xl: 8rem;
 
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -35,6 +35,18 @@
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-pulse-slow: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-marquee: marquee 35s linear infinite;
+  --animate-spin-slow: spin 10s linear infinite;
+  --animate-spin-slow-reverse: spin-reverse 15s linear infinite;
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
 
   @keyframes shimmer {
     from {

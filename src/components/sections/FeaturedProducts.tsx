@@ -6,36 +6,22 @@ import { cn } from "@/src/lib/utils";
 
 import { MOCK_PRODUCTS } from "@/src/data/products";
 
-const TABS = ["Todos", "Pokémon", "Magic", "Yu-Gi-Oh!", "Lorcana"];
-
 export function FeaturedProducts() {
-  const [activeTab, setActiveTab] = useState("Todos");
+  const featuredCards = MOCK_PRODUCTS
+    .filter(product => product.category === "Pokémon")
+    .slice(0, 8);
 
   return (
     <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
         <div>
-          <h2 className="font-heading text-[clamp(2rem,4vw,3.5rem)] uppercase font-bold inline-block relative">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] uppercase font-bold inline-block relative tracking-tight">
             Lo más buscado
-            <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-accent-2 shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
+            <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-accent to-accent-2 shadow-[0_0_15px_rgba(6,182,212,0.6)]" />
           </h2>
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border",
-                activeTab === tab
-                  ? "bg-accent/20 border-accent text-white shadow-[0_0_15px_rgba(124,58,237,0.4)]"
-                  : "bg-surface border-border text-text-muted hover:border-accent/50 hover:text-white"
-              )}
-            >
-              {tab}
-            </button>
-          ))}
+          <p className="text-text-muted mt-6 max-w-md text-lg">
+            Las cartas más cotizadas y difíciles de conseguir, ahora a tu alcance.
+          </p>
         </div>
       </div>
 
@@ -49,12 +35,12 @@ export function FeaturedProducts() {
         }}
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
       >
-        {MOCK_PRODUCTS.map((product) => (
+        {featuredCards.map((product) => (
           <motion.div
             key={product.id}
             variants={{
-              hidden: { opacity: 0, y: 20 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
             }}
           >
             <CardHover product={product} />
@@ -63,7 +49,7 @@ export function FeaturedProducts() {
       </motion.div>
 
       <div className="mt-16 flex justify-center">
-        <SkewButton label="Cargar más" variant="ghost" size="lg" />
+        <SkewButton label="Ver todos los singles →" variant="ghost" size="lg" />
       </div>
     </section>
   );
