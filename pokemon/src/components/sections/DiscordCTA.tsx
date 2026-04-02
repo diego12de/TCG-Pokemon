@@ -49,7 +49,7 @@ export function DiscordCTA() {
           label="Unirme al Discord →" 
           variant="discord" 
           size="lg" 
-          href={siteConfig.socialLinks.discord}
+          href={siteConfig.socialLinks.whatsapp}
         />
       </div>
     </section>

@@ -4,7 +4,7 @@ import { cn } from "@/src/lib/utils";
 interface SkewButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   href?: string;
-  variant?: "primary" | "ghost" | "discord";
+  variant?: "primary" | "ghost" | "discord" | "whatsapp";
   size?: "sm" | "md" | "lg";
 }
 
@@ -22,9 +22,10 @@ export const SkewButton = React.forwardRef<HTMLButtonElement, SkewButtonProps>(
       primary: "bg-gradient-to-br from-accent to-accent-2 text-white shadow-[0_0_20px_rgba(124,58,237,0.5)] hover:shadow-[0_0_30px_rgba(124,58,237,0.8)] -skew-x-6",
       ghost: "bg-transparent border border-accent/50 text-white hover:border-accent hover:bg-accent/10",
       discord: "bg-[#5865F2] text-white hover:bg-[#4752C4] -skew-x-6",
+      whatsapp: "bg-[#25D366] text-white hover:bg-[#1da851] -skew-x-6 shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:shadow-[0_0_30px_rgba(37,211,102,0.8)]",
     };
 
-    const innerStyles = variant === "primary" || variant === "discord" ? "skew-x-6" : "";
+    const innerStyles = variant === "primary" || variant === "discord" || variant === "whatsapp" ? "skew-x-6" : "";
 
     const content = (
       <>

@@ -9,15 +9,17 @@ import { Navbar } from "@/src/components/layout/Navbar";
 import { Hero } from "@/src/components/sections/Hero";
 import { TrustBar } from "@/src/components/sections/TrustBar";
 import { StatsBar } from "@/src/components/sections/StatsBar";
+import { ShippingBanner } from "@/src/components/sections/ShippingBanner";
 import { GameCategories } from "@/src/components/sections/GameCategories";
+import { ProductCategories } from "@/src/components/sections/ProductCategories";
 import { FeaturedProducts } from "@/src/components/sections/FeaturedProducts";
 import { BuylistBanner } from "@/src/components/sections/BuylistBanner";
 import { ValueProps } from "@/src/components/sections/ValueProps";
 import { NewReleases } from "@/src/components/sections/NewReleases";
 import { EventsCalendar } from "@/src/components/sections/EventsCalendar";
-import { SocialProof } from "@/src/components/sections/SocialProof";
+import { BlindBox } from "@/src/components/sections/BlindBox";
 import { GoogleReviews } from "@/src/components/sections/GoogleReviews";
-import { DiscordCTA } from "@/src/components/sections/DiscordCTA";
+import { WhatsAppCTA } from "@/src/components/sections/WhatsAppCTA";
 import { LeadCapture } from "@/src/components/sections/LeadCapture";
 import { Contact } from "@/src/components/sections/Contact";
 import { Footer } from "@/src/components/sections/Footer";
@@ -50,6 +52,7 @@ export default function App() {
 
         {/* Layout Components */}
         <TopBar />
+        <ShippingBanner />
         <Navbar onViewChange={setView} />
 
         {/* Main Content */}
@@ -59,14 +62,15 @@ export default function App() {
             <TrustBar />
             <StatsBar />
             <GameCategories />
+            <ProductCategories />
             <FeaturedProducts />
             {siteConfig.features.hasBuylist && <BuylistBanner />}
             <ValueProps />
             {siteConfig.features.hasPreorders && <NewReleases />}
             {siteConfig.features.hasEvents && <EventsCalendar />}
-            <SocialProof />
+            {siteConfig.features.hasBlindBox && <BlindBox />}
             <GoogleReviews />
-            {siteConfig.features.hasDiscord && <DiscordCTA />}
+            {siteConfig.features.hasWhatsApp && <WhatsAppCTA />}
             <LeadCapture />
             <Contact />
           </main>
@@ -94,4 +98,3 @@ export default function App() {
     </CartProvider>
   );
 }
-
